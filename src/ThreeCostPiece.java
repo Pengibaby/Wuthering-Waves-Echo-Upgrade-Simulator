@@ -1,13 +1,13 @@
 /*
- * A class to simulate the 1-Cost Echo piece.
+ * A class to simulate the 3-Cost Echo piece.
  */
-public class OneCostPiece extends Echoes {
+public class ThreeCostPiece extends Echoes {
 	
 	private String echoName;
 	private String MainStatName;
 	private double[] MainStatValues;
-	private String SecondStatName = "HP";
-	private int[] SecondStatValues = {456, 820, 1185, 1550, 1915, 2280};
+	private String SecondStatName = "ATK";
+	private int[] SecondStatValues = {20, 36, 52, 68, 84, 100};
 	private int numberOfLevelUps;
 	private int totalTuneSlots;
 	private int tuneIndex;
@@ -16,16 +16,17 @@ public class OneCostPiece extends Echoes {
 	private int numberOfSubstats = 5;
 	
 	//Possible main stat names and values.
-	private String[] mainStatNamesList = {"HP%", "ATK%", "DEF%"};
-	private double[] HpPercentMainStat = {4.5, 8.2, 11.8, 15.5, 19.1, 22.8};
-	private double[] AtkDefPercentMainStat = {3.6, 6.4, 9.3, 12.2, 15.1, 18.0};
+	private String[] mainStatNamesList = {"HP%", "ATK%", "DEF%", "Glacio DMG Bonus", "Fusion DMG Bonus", "Electro DMG Bonus", "Aero DMG Bonus", "Spectro DMG Bonus", "Havoc DMG Bonus", "Energy Regen"};
+	private double[] DefPercentMainStat = {7.6, 13.6, 19.7, 25.8, 31.9, 38.0};
+	private double[] HpAtkElementalPercentMainStat = {6.0, 10.8, 15.6, 20.4, 25.2, 30.0};
+	private double[] EnergyPercentMainStat = {6.4, 11.5, 16.6, 21.7, 26.8, 32.0};
 	
 	/**
-	 * Constructor for the OneCostPiece class
+	 * Constructor for the ThreeCostPiece class
 	 */
-	public OneCostPiece() {
+	public ThreeCostPiece() {
 		//Initialise values
-		this.echoName = "1-Cost";
+		this.echoName = "3-Cost";
 		this.numberOfLevelUps = 0;
 		this.totalTuneSlots = 0;
 		this.tuneIndex = 0;
@@ -33,13 +34,15 @@ public class OneCostPiece extends Echoes {
 		this.substatValues = new double[this.numberOfSubstats];
 		
 		//Gets a random index and then grabs the main stat name.
-		int mainStatIndex = (int)(Math.random() * 3);
+		int mainStatIndex = (int)(Math.random() * 10);
 		this.MainStatName = this.mainStatNamesList[mainStatIndex];
 		//Depending on the main stat name, set the correct values.
-		if(mainStatIndex == 1 || mainStatIndex == 2) {
-			this.MainStatValues = this.AtkDefPercentMainStat;
+		if(mainStatIndex == 2) {
+			this.MainStatValues = this.DefPercentMainStat;
+		} else if(mainStatIndex == 9){
+			this.MainStatValues = this.EnergyPercentMainStat;
 		} else {
-			this.MainStatValues = this.HpPercentMainStat;
+			this.MainStatValues = this.HpAtkElementalPercentMainStat;
 		}
 		
 		//Sets the 5 substats to "upgrade to +X to get substat", where X is value of level at multiples of 5.
@@ -50,9 +53,9 @@ public class OneCostPiece extends Echoes {
 	}
 	
 	/**
-	 * A function that will level the one cost piece by +5 ranks.
+	 * A function that will level the three cost piece by +5 ranks.
 	 */
-	public void levelOneCostPiece() {
+	public void levelThreeCostPiece() {
 		//increment level up counter by 1
 		this.numberOfLevelUps++;
 		
@@ -70,7 +73,7 @@ public class OneCostPiece extends Echoes {
 	/**
 	 * A function that will tune a substat of the echo
 	 */
-	public void tuneOneCostPiece() {
+	public void tuneThreeCostPiece() {
 		boolean insertionDone = false; //Checks to see if the substat has been inserted.
 		//Loops until the substat has been inserted
 		while(!insertionDone) {
@@ -117,8 +120,8 @@ public class OneCostPiece extends Echoes {
 	}
 	
 	/**
-	 * A function that returns the name of the artifact: 1-Cost.
-	 * @return			name of the artifact: 1-Cost
+	 * A function that returns the name of the artifact: 3-Cost.
+	 * @return			name of the artifact: 3-Cost
 	 */
 	public String getEchoName() {
 		return this.echoName;
@@ -157,8 +160,8 @@ public class OneCostPiece extends Echoes {
 	}
 	
 	/**
-	 * A function that returns the current level of the 1-Cost piece
-	 * @return			current 1-Cost piece level
+	 * A function that returns the current level of the 3-Cost piece
+	 * @return			current 3-Cost piece level
 	 */
 	public int getCurrentLevel() {
 		return this.numberOfLevelUps * 5;
@@ -181,7 +184,7 @@ public class OneCostPiece extends Echoes {
 	}
 	
 	/**
-	 * A function that prints out all the stats of the 1-Cost piece
+	 * A function that prints out all the stats of the 3-Cost piece
 	 */
 	public void printInfo() {
 		System.out.print(getMainStatName() + ": ");
