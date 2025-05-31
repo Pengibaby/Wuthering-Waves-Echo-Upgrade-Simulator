@@ -181,6 +181,14 @@ public class OneCostPiece extends Echoes {
 	}
 	
 	/**
+	 * A function that returns the number of possible slots of substats that can be tuned.
+	 * @return			total number of substat slots that can be tuned
+	 */
+	public int getTotalTuneableSlots() {
+		return this.totalTuneSlots;
+	}
+	
+	/**
 	 * A function that prints out all the stats of the 1-Cost piece
 	 */
 	public void printInfo() {

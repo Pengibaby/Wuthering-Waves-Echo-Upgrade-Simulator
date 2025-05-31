@@ -279,6 +279,106 @@ public class MainWindow {
 				
 				//Enable the upgrade button
 				UpgradeToNextRankButton.setEnabled(true);
+				//Disable tune echo button
+				TuneEchoButton.setEnabled(false);
+			}
+		});
+		
+		
+		//Function for upgrade echo button.
+		UpgradeToNextRankButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//Checks which piece is not null, so it can be upgraded
+				if(currentOneCostPiece != null) {
+					currentOneCostPiece.levelOneCostPiece();
+					//Update the level value label
+					currentLevelValueLabel.setText("+" + String.valueOf(currentOneCostPiece.getCurrentLevel()));
+					//Update the main stat value label
+					mainStatValueLabel.setText(String.valueOf(currentOneCostPiece.getMainStatValue()));
+					//Update the secondary stat value label
+					secondaryStatValueLabel.setText(String.valueOf(currentOneCostPiece.getSecondStatValue()));
+					//Update all of the substat names and values labels
+					for(int i = 0; i < 5; i++) {
+						substatNameLabelList[i].setText(currentOneCostPiece.getSubstatNames()[i]);
+						substatValueLabelList[i].setText(String.valueOf(currentOneCostPiece.getSubstatValues()[i]));
+					}
+				} else if(currentThreeCostPiece != null) {
+					currentThreeCostPiece.levelThreeCostPiece();
+					//Update the level value label
+					currentLevelValueLabel.setText("+" + String.valueOf(currentThreeCostPiece.getCurrentLevel()));
+					//Update the main stat value label
+					mainStatValueLabel.setText(String.valueOf(currentThreeCostPiece.getMainStatValue()));
+					//Update the secondary stat value label
+					secondaryStatValueLabel.setText(String.valueOf(currentThreeCostPiece.getSecondStatValue()));
+					//Update all of the substat names and values labels
+					for(int i = 0; i < 5; i++) {
+						substatNameLabelList[i].setText(currentThreeCostPiece.getSubstatNames()[i]);
+						substatValueLabelList[i].setText(String.valueOf(currentThreeCostPiece.getSubstatValues()[i]));
+					}
+				} else {
+					currentFourCostPiece.levelFourCostPiece();
+					//Update the level value label
+					currentLevelValueLabel.setText("+" + String.valueOf(currentFourCostPiece.getCurrentLevel()));
+					//Update the main stat value label
+					mainStatValueLabel.setText(String.valueOf(currentFourCostPiece.getMainStatValue()));
+					//Update the secondary stat value label
+					secondaryStatValueLabel.setText(String.valueOf(currentFourCostPiece.getSecondStatValue()));
+					//Update all of the substat names and values labels
+					for(int i = 0; i < 5; i++) {
+						substatNameLabelList[i].setText(currentFourCostPiece.getSubstatNames()[i]);
+						substatValueLabelList[i].setText(String.valueOf(currentFourCostPiece.getSubstatValues()[i]));
+					}
+				}
+				
+				//If the artifact level is +25, disable the upgrade button.
+				if(currentLevelValueLabel.getText().compareTo("+25") == 0) {
+					UpgradeToNextRankButton.setEnabled(false);
+				}
+				
+				//enable the tune echo button
+				TuneEchoButton.setEnabled(true);
+			}
+		});
+		
+		
+		//Function for tuning an echo button.
+		TuneEchoButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//Checks which piece is not null, so it can be upgraded
+				if(currentOneCostPiece != null) {
+					currentOneCostPiece.tuneOneCostPiece();
+					//Update all of the substat names and values labels
+					for(int i = 0; i < 5; i++) {
+						substatNameLabelList[i].setText(currentOneCostPiece.getSubstatNames()[i]);
+						substatValueLabelList[i].setText(String.valueOf(currentOneCostPiece.getSubstatValues()[i]));
+					}
+					//Disable this button if no substat slots are available to tune.
+					if(currentOneCostPiece.getTotalTuneableSlots() <= 0) {
+						TuneEchoButton.setEnabled(false);
+					}
+				} else if(currentThreeCostPiece != null) {
+					currentThreeCostPiece.tuneThreeCostPiece();
+					//Update all of the substat names and values labels
+					for(int i = 0; i < 5; i++) {
+						substatNameLabelList[i].setText(currentThreeCostPiece.getSubstatNames()[i]);
+						substatValueLabelList[i].setText(String.valueOf(currentThreeCostPiece.getSubstatValues()[i]));
+					}
+					//Disable this button if no substat slots are available to tune.
+					if(currentThreeCostPiece.getTotalTuneableSlots() <= 0) {
+						TuneEchoButton.setEnabled(false);
+					}
+				} else {
+					currentFourCostPiece.tuneFourCostPiece();
+					//Update all of the substat names and values labels
+					for(int i = 0; i < 5; i++) {
+						substatNameLabelList[i].setText(currentFourCostPiece.getSubstatNames()[i]);
+						substatValueLabelList[i].setText(String.valueOf(currentFourCostPiece.getSubstatValues()[i]));
+					}
+					//Disable this button if no substat slots are available to tune.
+					if(currentFourCostPiece.getTotalTuneableSlots() <= 0) {
+						TuneEchoButton.setEnabled(false);
+					}
+				}
 			}
 		});
 	}
