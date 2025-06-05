@@ -13,6 +13,7 @@ public class FourCostPiece extends Echoes {
 	private int tuneIndex;
 	private String[] substatNames;
 	private double[] substatValues;
+	private boolean[] substatPercentOrNot;
 	private int numberOfSubstats = 5;
 	
 	//Possible main stat names and values.
@@ -34,6 +35,7 @@ public class FourCostPiece extends Echoes {
 		this.tuneIndex = 0;
 		this.substatNames = new String[this.numberOfSubstats];
 		this.substatValues = new double[this.numberOfSubstats];
+		this.substatPercentOrNot = new boolean[this.numberOfSubstats];
 		
 		//Gets a random index and then grabs the main stat name.
 		int mainStatIndex = (int)(Math.random() * 6);
@@ -90,6 +92,8 @@ public class FourCostPiece extends Echoes {
 				if(this.tuneIndex == 0) {
 					this.substatNames[this.tuneIndex] = name;
 					this.substatValues[this.tuneIndex] = getSubstatValue(this.substatNames[this.tuneIndex]);
+					//Sets the percent boolean so that whether or not this value requires a % sign can be kept track of.
+					this.substatPercentOrNot[this.tuneIndex] = getPercentBoolean();
 					insertionDone = true; //End the loop
 					//Decrease the total tuneable slots.
 					this.totalTuneSlots = this.totalTuneSlots - 1;
@@ -111,6 +115,8 @@ public class FourCostPiece extends Echoes {
 						//Add the substat to the array, get the value of the substat and add that to the array too.
 						this.substatNames[this.tuneIndex] = name;
 						this.substatValues[this.tuneIndex] = getSubstatValue(this.substatNames[this.tuneIndex]);
+						//Sets the percent boolean so that whether or not this value requires a % sign can be kept track of.
+						this.substatPercentOrNot[this.tuneIndex] = getPercentBoolean();
 						insertionDone = true;
 						//Decrease the total tuneable slots.
 						this.totalTuneSlots = this.totalTuneSlots - 1;
@@ -189,6 +195,13 @@ public class FourCostPiece extends Echoes {
 		return this.substatValues;
 	}
 	
+	/**
+	 * A function that returns the list of substat percent booleans
+	 * @return			list of substat percent booleans
+	 */
+	public boolean[] getSubstatPercentOrNot() {
+		return this.substatPercentOrNot;
+	}
 	
 	/**
 	 * A function that returns the number of possible slots of substats that can be tuned.

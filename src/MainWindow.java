@@ -247,7 +247,11 @@ public class MainWindow {
 					secondaryStatValueLabel.setText(String.valueOf(currentOneCostPiece.getSecondStatValue()));
 					for(int i = 0; i < 5; i++) {
 						substatNameLabelList[i].setText(currentOneCostPiece.getSubstatNames()[i]);
-						substatValueLabelList[i].setText(String.valueOf(currentOneCostPiece.getSubstatValues()[i]));
+						if(String.valueOf(currentOneCostPiece.getSubstatValues()[i]).compareTo("0.0") == 0) {
+							substatValueLabelList[i].setText("-");
+						} else {
+							substatValueLabelList[i].setText(String.valueOf(currentOneCostPiece.getSubstatValues()[i]));
+						}
 					}
 				} else if(randomInteger == 1) {
 					//3-cost echo
@@ -260,7 +264,11 @@ public class MainWindow {
 					secondaryStatValueLabel.setText(String.valueOf(currentThreeCostPiece.getSecondStatValue()));
 					for(int i = 0; i < 5; i++) {
 						substatNameLabelList[i].setText(currentThreeCostPiece.getSubstatNames()[i]);
-						substatValueLabelList[i].setText(String.valueOf(currentThreeCostPiece.getSubstatValues()[i]));
+						if(String.valueOf(currentThreeCostPiece.getSubstatValues()[i]).compareTo("0.0") == 0) {
+							substatValueLabelList[i].setText("-");
+						} else {
+							substatValueLabelList[i].setText(String.valueOf(currentThreeCostPiece.getSubstatValues()[i]));
+						}
 					}
 				} else {
 					//4-cost echo
@@ -273,7 +281,11 @@ public class MainWindow {
 					secondaryStatValueLabel.setText(String.valueOf(currentFourCostPiece.getSecondStatValue()));
 					for(int i = 0; i < 5; i++) {
 						substatNameLabelList[i].setText(currentFourCostPiece.getSubstatNames()[i]);
-						substatValueLabelList[i].setText(String.valueOf(currentFourCostPiece.getSubstatValues()[i]));
+						if(String.valueOf(currentFourCostPiece.getSubstatValues()[i]).compareTo("0.0") == 0) {
+							substatValueLabelList[i].setText("-");
+						} else {
+							substatValueLabelList[i].setText(String.valueOf(currentFourCostPiece.getSubstatValues()[i]));
+						}
 					}
 				}
 				
@@ -298,10 +310,7 @@ public class MainWindow {
 					//Update the secondary stat value label
 					secondaryStatValueLabel.setText(String.valueOf(currentOneCostPiece.getSecondStatValue()));
 					//Update all of the substat names and values labels
-					for(int i = 0; i < 5; i++) {
-						substatNameLabelList[i].setText(currentOneCostPiece.getSubstatNames()[i]);
-						substatValueLabelList[i].setText(String.valueOf(currentOneCostPiece.getSubstatValues()[i]));
-					}
+					updateOneCostNameAndValueLabels(currentOneCostPiece);
 				} else if(currentThreeCostPiece != null) {
 					currentThreeCostPiece.levelThreeCostPiece();
 					//Update the level value label
@@ -311,10 +320,7 @@ public class MainWindow {
 					//Update the secondary stat value label
 					secondaryStatValueLabel.setText(String.valueOf(currentThreeCostPiece.getSecondStatValue()));
 					//Update all of the substat names and values labels
-					for(int i = 0; i < 5; i++) {
-						substatNameLabelList[i].setText(currentThreeCostPiece.getSubstatNames()[i]);
-						substatValueLabelList[i].setText(String.valueOf(currentThreeCostPiece.getSubstatValues()[i]));
-					}
+					updateThreeCostNameAndValueLabels(currentThreeCostPiece);
 				} else {
 					currentFourCostPiece.levelFourCostPiece();
 					//Update the level value label
@@ -324,10 +330,7 @@ public class MainWindow {
 					//Update the secondary stat value label
 					secondaryStatValueLabel.setText(String.valueOf(currentFourCostPiece.getSecondStatValue()));
 					//Update all of the substat names and values labels
-					for(int i = 0; i < 5; i++) {
-						substatNameLabelList[i].setText(currentFourCostPiece.getSubstatNames()[i]);
-						substatValueLabelList[i].setText(String.valueOf(currentFourCostPiece.getSubstatValues()[i]));
-					}
+					updateFourCostNameAndValueLabels(currentFourCostPiece);
 				}
 				
 				//If the artifact level is +25, disable the upgrade button.
@@ -348,10 +351,7 @@ public class MainWindow {
 				if(currentOneCostPiece != null) {
 					currentOneCostPiece.tuneOneCostPiece();
 					//Update all of the substat names and values labels
-					for(int i = 0; i < 5; i++) {
-						substatNameLabelList[i].setText(currentOneCostPiece.getSubstatNames()[i]);
-						substatValueLabelList[i].setText(String.valueOf(currentOneCostPiece.getSubstatValues()[i]));
-					}
+					updateOneCostNameAndValueLabels(currentOneCostPiece);
 					//Disable this button if no substat slots are available to tune.
 					if(currentOneCostPiece.getTotalTuneableSlots() <= 0) {
 						TuneEchoButton.setEnabled(false);
@@ -359,10 +359,7 @@ public class MainWindow {
 				} else if(currentThreeCostPiece != null) {
 					currentThreeCostPiece.tuneThreeCostPiece();
 					//Update all of the substat names and values labels
-					for(int i = 0; i < 5; i++) {
-						substatNameLabelList[i].setText(currentThreeCostPiece.getSubstatNames()[i]);
-						substatValueLabelList[i].setText(String.valueOf(currentThreeCostPiece.getSubstatValues()[i]));
-					}
+					updateThreeCostNameAndValueLabels(currentThreeCostPiece);
 					//Disable this button if no substat slots are available to tune.
 					if(currentThreeCostPiece.getTotalTuneableSlots() <= 0) {
 						TuneEchoButton.setEnabled(false);
@@ -370,10 +367,7 @@ public class MainWindow {
 				} else {
 					currentFourCostPiece.tuneFourCostPiece();
 					//Update all of the substat names and values labels
-					for(int i = 0; i < 5; i++) {
-						substatNameLabelList[i].setText(currentFourCostPiece.getSubstatNames()[i]);
-						substatValueLabelList[i].setText(String.valueOf(currentFourCostPiece.getSubstatValues()[i]));
-					}
+					updateFourCostNameAndValueLabels(currentFourCostPiece);
 					//Disable this button if no substat slots are available to tune.
 					if(currentFourCostPiece.getTotalTuneableSlots() <= 0) {
 						TuneEchoButton.setEnabled(false);
@@ -383,4 +377,81 @@ public class MainWindow {
 		});
 	}
 
+	/**
+	 * Function to update the name labels and value labels of one cost piece
+	 * @param obj		one cost piece object
+	 */
+	public void updateOneCostNameAndValueLabels(OneCostPiece obj) {
+		//Loops over all 5 substat slots
+		for(int i = 0; i < 5; i++) {
+			//sets the name label to the substat name
+			substatNameLabelList[i].setText(obj.getSubstatNames()[i]);
+			//check to see if the substat requires a percentage symbol or not
+			if(obj.getSubstatPercentOrNot()[i]) {
+				substatValueLabelList[i].setText(String.valueOf(obj.getSubstatValues()[i]) + "%");
+			//if it does not require a percentage symbol
+			} else {
+				//check if the substat is tuned or not
+				if(String.valueOf(obj.getSubstatValues()[i]).compareTo("0.0") == 0) {
+					//Not tuned
+					substatValueLabelList[i].setText("-");
+				} else {
+					//Tuned
+					substatValueLabelList[i].setText(String.valueOf(obj.getSubstatValues()[i]));
+				}
+			}
+		}
+	}
+	
+	/**
+	 * Function to update the name labels and value labels of three cost piece
+	 * @param obj		three cost piece object
+	 */
+	public void updateThreeCostNameAndValueLabels(ThreeCostPiece obj) {
+		//Loops over all 5 substat slots
+		for(int i = 0; i < 5; i++) {
+			//sets the name label to the substat name
+			substatNameLabelList[i].setText(obj.getSubstatNames()[i]);
+			//check to see if the substat requires a percentage symbol or not
+			if(obj.getSubstatPercentOrNot()[i]) {
+				substatValueLabelList[i].setText(String.valueOf(obj.getSubstatValues()[i]) + "%");
+			//if it does not require a percentage symbol
+			} else {
+				//check if the substat is tuned or not
+				if(String.valueOf(obj.getSubstatValues()[i]).compareTo("0.0") == 0) {
+					//Not tuned
+					substatValueLabelList[i].setText("-");
+				} else {
+					//Tuned
+					substatValueLabelList[i].setText(String.valueOf(obj.getSubstatValues()[i]));
+				}
+			}
+		}
+	}
+	
+	/**
+	 * Function to update the name labels and value labels of four cost piece
+	 * @param obj		four cost piece object
+	 */
+	public void updateFourCostNameAndValueLabels(FourCostPiece obj) {
+		//Loops over all 5 substat slots
+		for(int i = 0; i < 5; i++) {
+			//sets the name label to the substat name
+			substatNameLabelList[i].setText(obj.getSubstatNames()[i]);
+			//check to see if the substat requires a percentage symbol or not
+			if(obj.getSubstatPercentOrNot()[i]) {
+				substatValueLabelList[i].setText(String.valueOf(obj.getSubstatValues()[i]) + "%");
+			//if it does not require a percentage symbol
+			} else {
+				//check if the substat is tuned or not
+				if(String.valueOf(obj.getSubstatValues()[i]).compareTo("0.0") == 0) {
+					//Not tuned
+					substatValueLabelList[i].setText("-");
+				} else {
+					//Tuned
+					substatValueLabelList[i].setText(String.valueOf(obj.getSubstatValues()[i]));
+				}
+			}
+		}
+	}
 }

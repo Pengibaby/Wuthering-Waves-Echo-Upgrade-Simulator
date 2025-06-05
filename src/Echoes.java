@@ -16,6 +16,8 @@ public class Echoes {
 	private double[] CRValues = {6.3, 6.9, 7.5, 8.1, 8.7, 9.3, 9.9, 10.5};
 	private double[] CDValues = {12.6, 13.8, 15.0, 16.2, 17.4, 18.6, 19.8, 21.0};
 	private double[] BasicHeavySkillLiberationDmgValues = {6.4, 7.1, 7.9, 8.6, 9.4, 10.1, 10.9, 11.6};
+	//TEST Percentage boolean
+	private boolean percentOrNot = false;
 	
 	/**
 	 * A function to return a random substat from the list of possible substats
@@ -41,26 +43,44 @@ public class Echoes {
 		
 		//Check the name of the substat and return the appropriate value
 		if(name.compareTo("HP") == 0) {
+			this.percentOrNot = false;
 			return this.HPValues[index];
 		} else if(name.compareTo("ATK") == 0) {
+			this.percentOrNot = false;
 			return this.AtkValues[index / 2];
 		} else if(name.compareTo("DEF") == 0) {
+			this.percentOrNot = false;
 			return this.DefValues[index / 2];
 		} else if(name.compareTo("HP%") == 0) {
+			this.percentOrNot = true;
 			return this.HpPercentValues[index];
 		} else if(name.compareTo("ATK%") == 0) {
+			this.percentOrNot = true;
 			return this.AtkPercentValues[index];
 		} else if(name.compareTo("DEF%") == 0) {
+			this.percentOrNot = true;
 			return this.DefPercentValues[index];
 		} else if(name.compareTo("Energy Recharge") == 0) {
+			this.percentOrNot = true;
 			return this.ERValues[index];
 		} else if(name.compareTo("CRIT RATE") == 0) {
+			this.percentOrNot = true;
 			return this.CRValues[index];
 		} else if(name.compareTo("CRIT DMG") == 0) {
+			this.percentOrNot = true;
 			return this.CDValues[index];
 		}
 		
 		//If the name matches none of the above options, it has to be Basic, Heavy, Skill or Liberation Dmg Bonus, so return value from BasicHeavySkillLiberationDmgValues list.
+		this.percentOrNot = true;
 		return this.BasicHeavySkillLiberationDmgValues[index];
+	}
+	
+	/**
+	 * A function that returns whether or not 
+	 * @return		percent boolean
+	 */
+	public boolean getPercentBoolean() {
+		return this.percentOrNot;
 	}
 }
