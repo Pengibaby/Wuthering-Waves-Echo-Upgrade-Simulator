@@ -242,7 +242,7 @@ public class MainWindow {
 					PieceNameLabel.setText(currentOneCostPiece.getEchoName());
 					currentLevelValueLabel.setText("+" + String.valueOf(currentOneCostPiece.getCurrentLevel()));
 					mainStatNameLabel.setText(currentOneCostPiece.getMainStatName());
-					mainStatValueLabel.setText(String.valueOf(currentOneCostPiece.getMainStatValue()));
+					mainStatValueLabel.setText(String.valueOf(currentOneCostPiece.getMainStatValue()) + "%");
 					secondaryStatNameLabel.setText(currentOneCostPiece.getSecondStatName());
 					secondaryStatValueLabel.setText(String.valueOf(currentOneCostPiece.getSecondStatValue()));
 					for(int i = 0; i < 5; i++) {
@@ -259,7 +259,7 @@ public class MainWindow {
 					PieceNameLabel.setText(currentThreeCostPiece.getEchoName());
 					currentLevelValueLabel.setText("+" + String.valueOf(currentThreeCostPiece.getCurrentLevel()));
 					mainStatNameLabel.setText(currentThreeCostPiece.getMainStatName());
-					mainStatValueLabel.setText(String.valueOf(currentThreeCostPiece.getMainStatValue()));
+					mainStatValueLabel.setText(String.valueOf(currentThreeCostPiece.getMainStatValue()) + "%");
 					secondaryStatNameLabel.setText(currentThreeCostPiece.getSecondStatName());
 					secondaryStatValueLabel.setText(String.valueOf(currentThreeCostPiece.getSecondStatValue()));
 					for(int i = 0; i < 5; i++) {
@@ -276,7 +276,7 @@ public class MainWindow {
 					PieceNameLabel.setText(currentFourCostPiece.getEchoName());
 					currentLevelValueLabel.setText("+" + String.valueOf(currentFourCostPiece.getCurrentLevel()));
 					mainStatNameLabel.setText(currentFourCostPiece.getMainStatName());
-					mainStatValueLabel.setText(String.valueOf(currentFourCostPiece.getMainStatValue()));
+					mainStatValueLabel.setText(String.valueOf(currentFourCostPiece.getMainStatValue()) + "%");
 					secondaryStatNameLabel.setText(currentFourCostPiece.getSecondStatName());
 					secondaryStatValueLabel.setText(String.valueOf(currentFourCostPiece.getSecondStatValue()));
 					for(int i = 0; i < 5; i++) {
@@ -306,7 +306,7 @@ public class MainWindow {
 					//Update the level value label
 					currentLevelValueLabel.setText("+" + String.valueOf(currentOneCostPiece.getCurrentLevel()));
 					//Update the main stat value label
-					mainStatValueLabel.setText(String.valueOf(currentOneCostPiece.getMainStatValue()));
+					mainStatValueLabel.setText(String.valueOf(currentOneCostPiece.getMainStatValue()) + "%");
 					//Update the secondary stat value label
 					secondaryStatValueLabel.setText(String.valueOf(currentOneCostPiece.getSecondStatValue()));
 					//Update all of the substat names and values labels
@@ -316,7 +316,7 @@ public class MainWindow {
 					//Update the level value label
 					currentLevelValueLabel.setText("+" + String.valueOf(currentThreeCostPiece.getCurrentLevel()));
 					//Update the main stat value label
-					mainStatValueLabel.setText(String.valueOf(currentThreeCostPiece.getMainStatValue()));
+					mainStatValueLabel.setText(String.valueOf(currentThreeCostPiece.getMainStatValue()) + "%");
 					//Update the secondary stat value label
 					secondaryStatValueLabel.setText(String.valueOf(currentThreeCostPiece.getSecondStatValue()));
 					//Update all of the substat names and values labels
@@ -326,7 +326,7 @@ public class MainWindow {
 					//Update the level value label
 					currentLevelValueLabel.setText("+" + String.valueOf(currentFourCostPiece.getCurrentLevel()));
 					//Update the main stat value label
-					mainStatValueLabel.setText(String.valueOf(currentFourCostPiece.getMainStatValue()));
+					mainStatValueLabel.setText(String.valueOf(currentFourCostPiece.getMainStatValue()) + "%");
 					//Update the secondary stat value label
 					secondaryStatValueLabel.setText(String.valueOf(currentFourCostPiece.getSecondStatValue()));
 					//Update all of the substat names and values labels
